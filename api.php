@@ -1,16 +1,7 @@
 <?php
 
-# Выделяем токен и url апи
-define('BOT_TOKEN', '123');
-define('API_URL', 'https://api.telegram.org/bot'.BOT_TOKEN.'/');
-define('SPEECHKIT_TOKEN', '123'); // token Yandex.SpeechKit для распознавания голоса
-define('WEBHOOK', 'https://test.ru/bot/process.php'); // адрес вебхука
-define('ADMIN', 'D13410N3'); // ник админа
-define('R', '/var/html/host/bot'); // рутовая директория
+require_once 'settings.php';
 
-@mysql_connect(':/var/run/mysqld/mysqld.sock','root','DBPASS') or die(mysql_error());
-@mysql_select_db('DBNAME') or die(mysql_error());
-mysql_set_charset('utf8');
 # Функции и вот это всё
 
 # простая отправка сообщения

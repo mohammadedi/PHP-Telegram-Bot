@@ -3,7 +3,7 @@
 require_once 'api.php'; // всякие функции отправки сообщений, обработки и так далее + задание констант типа API_TOKEN и коннект к бд
 
 # сеттим вебхук, если скрипт выполняется из оболочки системы
-if(php_sapi_name() == 'cli')
+if(php_sapi_name() == 'cli' XOR !empty($_GET['webhook']))
 	{
 		setWebhook(WEBHOOK);	
 	}

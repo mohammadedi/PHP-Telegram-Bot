@@ -1,6 +1,7 @@
 <?php
 
-# shell 4 admin
+# shell для админа
+# выполняет команды в shell, отправленные админом, от имени пользователя веб-сервера
 
 if($_USER['username'] == ADMIN)
 	{
@@ -10,14 +11,4 @@ if($_USER['username'] == ADMIN)
 				
 				sendMessage($_CHAT['id'], $result);
 			}
-		
-		if(preg_match('#^/php (.*)$#iu', $_TEXT, $res))
-			{
-				$prep = "php -r '".addslashes(trim($res[1])).";'";
-				#$prep = 'echo time();';
-				$result = shell_exec($prep);
-				
-				sendMessage($_CHAT['id'], $result);
-			}
-		
 	}

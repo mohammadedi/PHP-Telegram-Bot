@@ -1,11 +1,13 @@
 <?php
 
-# now playing
+# now playing с last.fm
+# выводит текущий или последний трек с Last.Fm
+# /np ICQFan4ever - как пример команды
 
 if(preg_match("#^/np ([a-zA-Z0-9\-\_]{5,})$#iu", $_TEXT, $cbb) || preg_match("#^/nowplaying ([a-zA-Z0-9\-\_]{5,})$#iu", $_TEXT, $cbb))
 	{
 		$user = $cbb[1];
-		$url = 'http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user='.$user.'&api_key=1c15cbf8b0b1ec524d3633e8c55ad934&format=json&limit=1';
+		$url = 'http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user='.$user.'&api_key='.LASTFM.'&format=json&limit=1';
 		$f = file_get_contents($url);
 		
 		$array = json_decode($f, TRUE);

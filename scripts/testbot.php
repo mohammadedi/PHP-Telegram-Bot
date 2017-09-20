@@ -1,5 +1,7 @@
 <?php
 
+# админ может посмотреть статистику бота
+
 if($_USER['username'] == ADMIN)
 	{
 		if($_MESS['text'] == '/testbot')
