@@ -31,6 +31,28 @@ function sendMessage($id_chat, $text, $mark = '', $id_message = '')
 		$a = curl_exec($ch);
 		return json_decode($a, true);
 	}
+# отправка клавы с выборкой
+function sendKeyboard($id_chat, $text, $mark = '', $id_message = '', $keyboard = array())
+	{
+		// $text = empty($text) ? 'undef or empty var' : $text;
+		
+		
+		$toSend = array('method' => 'sendMessage', 'chat_id' => $id_chat, 'text' => $text);
+		isset($id_message) ? $toSend['reply_to_id_message'] = $id_message : '';
+		isset($mark) ? $toSend['parse_mode'] = $mark : '';
+		
+		!empty($keyboard) ? $toSend['reply_markup'] = array('keyboard' => $keyboard, 'one_time_keyboard' => false, 'resize_keyboard' => true) : '';
+		# 'one_time_keyboard' => false клава будет скрыта после выбора
+		
+		$ch = curl_init(API_URL);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($toSend));
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json"));
+		$a = curl_exec($ch);
+		return json_decode($a, true);
+	}
 
 # редактирование
 function editMessage($id_message, $id_chat, $text, $mark = '')
