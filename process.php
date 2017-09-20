@@ -28,6 +28,8 @@ else
 		$_USER['username'] = empty($_USER['username']) ? $_USER['first_name'].' '.$_USER['last_name'] : $_USER['username'];
 		
 
+		$_CHAT['title'] = empty($_CHAT['title']) ? 'ЛС' : $_CHAT['title'];
+
 		// пишем в базу
 		mysql_query("INSERT INTO `messages`(`id_chat`, `id_message`, `id_user`, `time`, `message`, `user_nick`, `chat_name`) VALUES ('".$_CHAT['id']."', '".$_MESS['message_id']."', '".$_USER['id']."', '".time()."', '".$_MESS['text']."', '".$_USER['username']."', '".$_CHAT['title']."')");
 
@@ -47,38 +49,14 @@ else
 						mysql_query("INSERT INTO `tg_chats`(`id_chat`, `title`) VALUES ('".$_CHAT['id']."', '".$_CHAT['title']."')");
 					}
 			}
-		
-		
-		
-		if(mb_substr($_TEXT, 0, 1, 'utf-8') == '/' && $_USER['username'] != ADMIN)
-			{
-				$q = mysql_query("SELECT * FROM `antiflood` WHERE `id_user` = ".$_USER['id']);
-				sendMessage($_USER['id'], mysql_error());
-				if(mysql_num_rows($q) == 1)
-					{
-						$info = mysql_fetch_assoc($q);
-						if($info['time'] + FLOOD > time())
-							{
-								// die;
-							}
-						else
-							{
-								mysql_query("UPDATE `antiflood` SET `time` = ".time()." WHERE `id_user` = ".$_USER['id']);
-							}
-					}
-				else
-					{
-						mysql_query("INSERT INTO `antiflood`(`id_user`, `time`) VALUES (".$_USER['id'].", ".time().")");
-					}
-			}
-		
-		
+
 		// тут require всяких скриптов-обработчиков
 		$h = opendir('scripts');
 		
 		while(false !== ($file = readdir($h)))
 			{
-				$ext = end(explode('.', $file));
+				$___tmp = explode('.', $file);
+				$ext = end($___tmp);
 				if($ext == 'php')
 					{
 						require_once 'scripts/'.$file;
@@ -86,5 +64,4 @@ else
 			}
 		closedir($h);
 				
-		
 	}
