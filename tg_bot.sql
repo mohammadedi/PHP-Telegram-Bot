@@ -24,17 +24,7 @@ SET time_zone = "+00:00";
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `antiflood`
---
 
-CREATE TABLE `antiflood` (
-  `id` int(11) NOT NULL,
-  `id_user` int(11) DEFAULT NULL,
-  `time` int(11) DEFAULT NULL
-) ENGINE=Aria DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
 
 --
 -- Table structure for table `messages`
@@ -80,12 +70,6 @@ CREATE TABLE `tg_users` (
 --
 
 --
--- Indexes for table `antiflood`
---
-ALTER TABLE `antiflood`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `messages`
 --
 ALTER TABLE `messages`
@@ -107,11 +91,7 @@ ALTER TABLE `tg_users`
 -- AUTO_INCREMENT for dumped tables
 --
 
---
--- AUTO_INCREMENT for table `antiflood`
---
-ALTER TABLE `antiflood`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `messages`
 --
