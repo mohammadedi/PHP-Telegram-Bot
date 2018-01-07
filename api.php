@@ -9,7 +9,7 @@ function sendMessage($id_chat, $text, $mark = '', $id_message = '')
 	{
 		// $text = empty($text) ? 'undef or empty var' : $text;
 		$toSend = array('method' => 'sendMessage', 'chat_id' => $id_chat, 'text' => $text);
-		isset($id_message) ? $toSend['reply_to_id_message'] = $id_message : '';
+		isset($id_message) ? $toSend['reply_to_message_id'] = $id_message : '';
 		isset($mark) ? $toSend['parse_mode'] = $mark : '';
 		
 		$ch = curl_init(API_URL);
