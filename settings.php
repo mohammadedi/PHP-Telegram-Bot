@@ -2,7 +2,7 @@
 # основные настройки бота
 define('BOT_TOKEN', '123'); // токен бота
 define('API_URL', 'https://api.telegram.org/bot'.BOT_TOKEN.'/'); // адрес API. Без нужды не трогать!
-define('WEBHOOK', 'https://test.ru/bot/process.php'); // адрес вебхука, поменять на свой
+define('WEBHOOK', 'https://test.ru/bot/process.php'); // адрес вебхука, поменять на свой (строго https!!!)
 define('ADMIN', 'D13410N3'); // ник админа, используется проверка "админ ли?"
 define('R', '/var/html/host/bot'); // рутовая директория, т.е. где лежит этот файл, например
 
